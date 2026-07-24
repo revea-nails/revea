@@ -1,299 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REVÉA Nails</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap');
 
-    <title>REVÉA | Luxury Press-On Nails</title>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    <link rel="stylesheet" href="style.css">
+body{
+font-family:'Poppins',sans-serif;
+background:#fcf8f8;
+color:#3e312d;
+}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+header{
+padding:90px 20px;
+text-align:center;
+background:linear-gradient(180deg,#fff8f9,#f9ecef);
+}
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+h1{
+font-family:'Cormorant Garamond',serif;
+font-size:72px;
+letter-spacing:3px;
+font-weight:700;
+margin-bottom:10px;
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+header p{
+font-size:18px;
+color:#7c6c66;
+margin-bottom:35px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 28px;
+margin:8px;
+background:#9f6c78;
+color:white;
+text-decoration:none;
+border-radius:50px;
+transition:.3s;
+font-weight:500;
+}
+
+.btn:hover{
+background:#7f4f5d;
+transform:translateY(-3px);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
+padding:60px;
+}
+
+.card{
+background:white;
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 18px 45px rgba(183,124,139,.25);
+}
+
+.card img{
+width:100%;
+height:330px;
+object-fit:cover;
+display:block;
+}
+
+.card h3{
+margin-top:20px;
+font-size:18px;
+}
+
+.card p{
+margin:8px 20px;
+}
+
+.card .btn{
+margin:20px;
+display:block;
+text-align:center;
+}
+
+footer{
+margin-top:50px;
+padding:60px 20px;
+background:#f4ece7;
+text-align:center;
+}
+
+footer h2{
+font-family:'Cormorant Garamond',serif;
+font-size:40px;
+margin-bottom:20px;
+}
+
+footer p{
+color:#6d5b55;
+line-height:1.8;
+}
+</style>
 </head>
-
 <body>
-
 <header>
+<h1>REVÉA Nails</h1>
+    <p>Elegant designs curated for every occasion.</p>
+<p>Luxury Press-On Nails for Every Occasion</p>
 
-<div class="overlay">
-
-<h1>REVÉA</h1>
-
-<p class="subtitle">
-Luxury Press-On Nails
+<p style="max-width:600px;margin:20px auto;font-size:18px;line-height:1.8;">
+Designed to elevate your look with salon-quality press-on nails.
+Elegant. Reusable. Effortlessly beautiful.
 </p>
-
-<p class="description">
-
-Elegant designs curated for every occasion.
-
-Salon-quality nails made to elevate your everyday look.
-
-</p>
-
-<div class="heroButtons">
-
-<a href="#shop" class="mainBtn">
-Shop Collection
-</a>
-
-<a href="https://instagram.com/revea.nails" target="_blank" class="secondaryBtn">
-Instagram
-</a>
-
-</div>
-
-</div>
-
+<a class="btn" href="https://wa.me/923283998968">Shop Now</a>
+<a class="btn" href="https://instagram.com/revea.nails">Follow Us</a>
 </header>
 
-
-
-<section class="searchSection">
-
-<input
-type="text"
-id="searchInput"
-placeholder="Search by code or name..."
->
-
-</section>
-
-
-
-<section class="categories">
-
-<button class="active">
-All
-</button>
-
-<button>
-Dark
-</button>
-
-<button>
-Nude
-</button>
-
-<button>
-Blue
-</button>
-
-<button>
-Character
-</button>
-
-<button>
-New
-</button>
+<section class="grid">
+<div class="card"><img src="rv001.jpg.jpeg" alt="RV001"><h3>RV001</h3><p><b>Midnight Muse</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV001 - Midnight Muse.">♡ Order Now</a></div>
+<div class="card"><img src="rv002.jpg.jpeg" alt="RV002"><h3>RV002</h3><p><b>Bluebell Grace</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV002 - Bluebell Grace.">♡ Order Now</a></div>
+<div class="card"><img src="rv003.jpg.jpeg" alt="RV003"><h3>RV003</h3><p><b>Champagne Veil</b></p><p>Rs. 999</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV003 - Champagne Veil.">♡ Order Now</a></div>
+<div class="card"><img src="rv004.jpg.jpeg" alt="RV004"><h3>RV004</h3><p><b>Mocha Bloom</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV004 - Mocha Bloom.">♡ Order Now</a></div>
+<div class="card"><img src="rv005.jpg.jpeg" alt="RV005"><h3>RV005</h3><p><b>Berry Blush</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV005 - Berry Blush.">♡ Order Now</a></div>
+<div class="card"><img src="rv006.jpg.jpeg" alt="RV006"><h3>RV006</h3><p><b>Emerald Tide</b></p><p>Rs. 1,299</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV006 - Emerald Tide.">♡ Order Nowr</a></div>
+<div class="card"><img src="rv007.jpg.jpeg" alt="RV007"><h3>RV007</h3><p><b>Forest Whisper</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV007 - Forest Whisper.">♡ Order Now</a></div>
+<div class="card"><img src="rv008.jpg.jpeg" alt="RV008"><h3>RV008</h3><p><b>Plum Petals</b></p><p>Rs. 999</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV008 - Plum Petals.">♡ Order Now</a></div>
+<div class="card"><img src="rv009.jpg.jpeg" alt="RV009"><h3>RV009</h3><p><b>Ocean Pearl</b></p><p>Rs. 1,299</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV009 - Ocean Pearl.">♡ Order Now</a></div>
+<div class="card"><img src="rv0010.jpg.jpeg" alt="RV010"><h3>RV010</h3><p><b>Velvet Merlot</b></p><p>Rs. 899</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV010 - Velvet Merlot.">♡ Order Now</a></div>
+<div class="card"><img src="rv0011.jpg.jpeg" alt="RV011"><h3>RV011</h3><p><b>Mocha Leaves</b></p><p>Rs. 799</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV011 - Mocha Leaves.">♡ Order Now</a></div>
+<div class="card"><img src="rv0012.jpg.jpeg" alt="RV012"><h3>RV012</h3><p><b>Burgundy Stardust</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV012 - Burgundy Stardust.">♡ Order Now</a></div>
+<div class="card"><img src="rv0013.jpg.jpeg" alt="RV013"><h3>RV013</h3><p><b>Crimson Web</b></p><p>Rs. 1,399</p><a class="btn" href="https://wa.me/923283998968?text=Hi! I'm interested in RV013 - Crimson Web.">♡ Order Now</a></div>
 
 </section>
-
-
-
-<section id="shop">
-
-<h2>
-
-Our Collection
-
-</h2>
-
-<div id="productContainer">
-
-<!-- Products appear automatically here -->
-
-</div>
-
-</section>
-
-
-
-<section class="shipping">
-
-<h2>
-
-Shipping
-
-</h2>
-
-<div class="shippingGrid">
-
-<div>
-
-<h3>
-
-Karachi
-
-</h3>
-
-<p>
-
-300 PKR
-
-</p>
-
-</div>
-
-<div>
-
-<h3>
-
-Nationwide
-
-</h3>
-
-<p>
-
-600 PKR
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section class="faq">
-
-<h2>
-
-Frequently Asked Questions
-
-</h2>
-
-<div class="faqItem">
-
-<h3>
-
-Are the nails reusable?
-
-</h3>
-
-<p>
-
-Yes! With proper care, REVÉA nails can be reused multiple times.
-
-</p>
-
-</div>
-
-<div class="faqItem">
-
-<h3>
-
-Do you customize nail sets?
-
-</h3>
-
-<p>
-
-At the moment, we only sell the designs available on our page.
-
-</p>
-
-</div>
-
-<div class="faqItem">
-
-<h3>
-
-How do I order?
-
-</h3>
-
-<p>
-
-Simply click "Order Now" and message us on WhatsApp.
-
-</p>
-
-</div>
-
-</section>
-
-
-
 <footer>
-
-<h2>
-
-REVÉA
-
-</h2>
-
-<p>
-
-Luxury Press-On Nails
-
-</p>
-
-<div class="footerLinks">
-
-<a
-href="https://instagram.com/revea.nails"
-target="_blank">
-
-Instagram
-
-</a>
-
-<a
-href="https://wa.me/923283998968"
-target="_blank">
-
-WhatsApp
-
-</a>
-
-</div>
-
-<p class="copyright">
-
-© 2026 REVÉA
-
-</p>
-
+<h2>How to Order</h2>
+<p>1. Choose your favorite set.<br>2. Message us on WhatsApp or Instagram.<br>3. Tell us your nail size and shipping details.</p>
+<p><b>Instagram:</b> @revea.nails</p>
 </footer>
-
-
-
-<button id="whatsappButton">
-
-💬
-
-</button>
-
-
-
-<div id="productModal">
-
-<div id="modalContent">
-
-<span id="closeModal">
-
-×
-
-</span>
-
-<div id="modalBody">
-
-</div>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
+</body></html>
