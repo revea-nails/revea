@@ -98,3 +98,133 @@ h1{
 .secondaryBtn:hover{
     transform:translateY(-5px);
 }
+/* Search */
+
+.searchSection{
+    padding:60px 20px 20px;
+    display:flex;
+    justify-content:center;
+}
+
+#searchInput{
+    width:700px;
+    max-width:90%;
+    padding:18px 25px;
+    border:none;
+    border-radius:50px;
+    font-size:16px;
+    background:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    outline:none;
+}
+
+/* Categories */
+
+.categories{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    padding:25px 20px 60px;
+}
+
+.categories button{
+    border:none;
+    background:white;
+    padding:12px 28px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.categories button:hover{
+    background:#8A6E63;
+    color:white;
+}
+
+.categories .active{
+    background:#8A6E63;
+    color:white;
+}
+/* Products */
+
+#shop{
+    padding:40px 70px;
+}
+
+#shop h2{
+    text-align:center;
+    font-size:56px;
+    font-family:'Cormorant Garamond',serif;
+    margin-bottom:60px;
+}
+
+#productContainer{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+.card{
+    background:white;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.card img{
+    width:100%;
+    height:420px;
+    object-fit:cover;
+    display:block;
+    transition:.4s;
+}
+
+.card:hover img{
+    transform:scale(1.05);
+}
+
+.cardContent{
+    padding:25px;
+}
+
+.cardContent h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.code{
+    color:#8A6E63;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+.cardButtons{
+    display:flex;
+    gap:12px;
+}
+
+.cardButtons button{
+    flex:1;
+    padding:14px;
+    border:none;
+    border-radius:40px;
+    background:#8A6E63;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.cardButtons button:hover{
+    background:#6f574e;
+}
