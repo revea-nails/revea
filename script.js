@@ -244,3 +244,61 @@ searchInput.addEventListener("keyup", () => {
     displayProducts(filtered);
 
 });
+// ===========================
+// Category Filters
+// ===========================
+
+const categoryButtons = document.querySelectorAll(".categories button");
+
+categoryButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        categoryButtons.forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+
+        const category = button.textContent.trim();
+
+        if(category === "All"){
+
+            displayProducts(products);
+
+            return;
+
+        }
+
+        const filtered = products.filter(product => product.category === category);
+
+        displayProducts(filtered);
+
+    });
+
+});
+
+
+// ===========================
+// Floating WhatsApp Button
+// ===========================
+
+const whatsappButton = document.getElementById("whatsappButton");
+
+whatsappButton.addEventListener("click", () => {
+
+    window.open(
+        "https://wa.me/923283998968",
+        "_blank"
+    );
+
+});
+
+
+// ===========================
+// Website Loaded
+// ===========================
+
+window.addEventListener("load", () => {
+
+    displayProducts(products);
+
+});
