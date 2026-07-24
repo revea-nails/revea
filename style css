@@ -355,3 +355,33 @@ footer h2{
     font-size:34px;
     cursor:pointer;
 }
+.popupGallery{
+    display:flex;
+    gap:15px;
+    overflow-x:auto;
+    margin:25px 0;
+}
+
+.popupImage{
+    width:240px;
+    height:320px;
+    object-fit:cover;
+    border-radius:18px;
+    flex-shrink:0;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.popupOrder{
+    margin-top:25px;
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    background:#8A6E63;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.popupOrder:hover{
+    background:#6f574e;
+}
