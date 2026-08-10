@@ -174,6 +174,12 @@
     justify-content:center;
     flex-wrap:wrap;
   }
+  .hero-delivery{
+    margin-top:26px;
+    font-size:0.8rem;
+    letter-spacing:0.04em;
+    color:var(--ink-soft);
+  }
   .btn{
     display:inline-flex;
     align-items:center;
@@ -322,6 +328,7 @@
   }
   .card-body h3{
     font-style:italic;
+    font-weight:600;
     font-size:1.3rem;
     color:var(--ink);
     margin-bottom:6px;
@@ -344,11 +351,13 @@
     letter-spacing:0.14em;
     text-transform:uppercase;
     font-weight:500;
+    font-family:'Jost', sans-serif;
     color:var(--ivory);
     background:var(--pink-dull);
     border:1px solid var(--pink-dull);
     border-radius:999px;
     box-shadow:0 8px 18px rgba(169,116,125,0.4);
+    cursor:pointer;
     transition:background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
   .card-order:hover{
@@ -359,6 +368,205 @@
   }
   .card-order:active{
     transform:translateY(-1px);
+  }
+
+  /* ===== CART ===== */
+  .cart-fab{
+    position:fixed;
+    bottom:26px; right:26px;
+    z-index:90;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:15px 22px;
+    background:var(--noir);
+    color:var(--ivory);
+    border:none;
+    border-radius:999px;
+    font-family:'Jost', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.06em;
+    cursor:pointer;
+    box-shadow:0 10px 26px rgba(28,20,16,0.28);
+    transition:transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+  .cart-fab:hover{transform:translateY(-3px); box-shadow:0 16px 34px rgba(28,20,16,0.35);}
+  .cart-fab.has-items{background:var(--pink-dull-dark);}
+  .cart-count{
+    background:var(--ivory);
+    color:var(--noir);
+    font-size:0.72rem;
+    font-weight:600;
+    min-width:20px;
+    height:20px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 5px;
+  }
+
+  .cart-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(28,20,16,0.4);
+    backdrop-filter:blur(2px);
+    z-index:95;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.35s ease;
+  }
+  .cart-backdrop.open{opacity:1; pointer-events:auto;}
+
+  .cart-drawer{
+    position:fixed;
+    top:0; right:0;
+    height:100vh;
+    width:min(420px, 92vw);
+    background:var(--paper);
+    z-index:100;
+    display:flex;
+    flex-direction:column;
+    transform:translateX(100%);
+    transition:transform 0.4s cubic-bezier(.22,.61,.36,1);
+    box-shadow:-10px 0 40px rgba(28,20,16,0.18);
+  }
+  .cart-drawer.open{transform:translateX(0);}
+  .cart-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:26px 26px 20px;
+    border-bottom:1px solid var(--stone);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--ink);
+  }
+  .cart-close{
+    background:none;
+    border:none;
+    font-size:1.6rem;
+    line-height:1;
+    color:var(--ink-soft);
+    cursor:pointer;
+    padding:0;
+  }
+  .cart-items{
+    flex:1;
+    overflow-y:auto;
+    padding:10px 26px;
+  }
+  .cart-empty{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    text-align:center;
+    padding:60px 10px;
+  }
+  .cart-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 0;
+    border-bottom:1px solid var(--stone);
+  }
+  .cart-item-info h4{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--ink);
+    margin-bottom:3px;
+  }
+  .cart-item-info span{
+    font-size:0.8rem;
+    color:var(--rose);
+  }
+  .cart-item-controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .cart-item-controls button{
+    width:26px; height:26px;
+    border-radius:50%;
+    border:1px solid var(--stone-2);
+    background:var(--ivory);
+    color:var(--ink);
+    font-size:0.9rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color 0.25s ease, color 0.25s ease;
+  }
+  .cart-item-controls button:hover{border-color:var(--pink-dull); color:var(--pink-dull-dark);}
+  .cart-item-controls span{font-size:0.86rem; min-width:14px; text-align:center;}
+  .cart-remove{
+    margin-left:6px;
+    border:none !important;
+    background:none !important;
+    color:var(--ink-soft) !important;
+    font-size:1.1rem !important;
+  }
+  .cart-remove:hover{color:var(--rose) !important;}
+  .cart-footer{
+    padding:20px 26px 28px;
+    border-top:1px solid var(--stone);
+  }
+  .cart-delivery{
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    background:var(--rose-light);
+    border-radius:8px;
+    padding:10px 14px;
+    margin-bottom:16px;
+    text-align:center;
+  }
+  .cart-subtotal{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:0.95rem;
+    margin-bottom:18px;
+  }
+  .cart-subtotal span:first-child{
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .cart-subtotal span:last-child{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--ink);
+  }
+  .cart-payment{
+    background:var(--ivory);
+    border:1px solid var(--stone-2);
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:18px;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+  }
+  .cart-payment strong{color:var(--ink); font-weight:600;}
+  .cart-payment-number{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--rose);
+    margin:4px 0 6px;
+  }
+  .cart-checkout-btn{
+    width:100%;
+    justify-content:center;
+    border:none;
+    font-family:'Jost', sans-serif;
+    cursor:pointer;
   }
 
   /* ===== HOW TO ORDER ===== */
@@ -487,9 +695,10 @@
     <h1>Elegance,<br><em>pressed on.</em></h1>
     <p class="tag">Salon-quality sets curated for every occasion — elegant, reusable, and effortlessly beautiful.</p>
     <div class="hero-cta">
-      <a class="btn btn-solid" href="https://wa.me/923283998968">Shop the Collection</a>
+      <a class="btn btn-solid" href="#catalog">Shop the Collection</a>
       <a class="btn btn-outline" href="https://instagram.com/revea.nails">Follow @revea.nails</a>
     </div>
+    <p class="hero-delivery">🚚 Delivered within 12–14 days, anywhere in Pakistan</p>
   </div>
   <div class="nail-divider">
     <svg viewBox="0 0 34 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -542,6 +751,33 @@
   <div class="fine">&copy; 2026 REVÉA Nails. Elegant designs curated for every occasion.</div>
 </footer>
 
+<button id="cart-fab" class="cart-fab" type="button" aria-label="View cart">
+  🛍️ <span>Bag</span> <span id="cart-count" class="cart-count">0</span>
+</button>
+
+<div id="cart-backdrop" class="cart-backdrop"></div>
+
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-header">
+    <span>Your Bag</span>
+    <button id="cart-close-btn" class="cart-close" type="button" aria-label="Close cart">&times;</button>
+  </div>
+  <div id="cart-items" class="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-delivery">🚚 Delivered within 12–14 days, anywhere in Pakistan</div>
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cart-total">Rs. 0</span>
+    </div>
+    <div class="cart-payment">
+      Pay via JazzCash or EasyPaisa to:
+      <div class="cart-payment-number">[Add your JazzCash / EasyPaisa number here]</div>
+      Send the payment, then tap below — we'll confirm your order on WhatsApp and ask for your screenshot and shipping details.
+    </div>
+    <button id="cart-checkout" class="btn btn-solid cart-checkout-btn" type="button">Confirm Order on WhatsApp</button>
+  </div>
+</div>
+
 <script>
   // products data
   const products = [
@@ -585,7 +821,6 @@
   const fmt = n => "Rs. " + n.toLocaleString('en-IN');
 
   products.forEach(([code, img, name, price]) => {
-    const waText = encodeURIComponent(`Hi! I'm interested in ${code} - ${name}.`);
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
@@ -596,7 +831,7 @@
       <div class="card-body">
         <h3>${name}</h3>
         <div class="card-price">${fmt(price)}</div>
-        <a class="card-order" href="https://wa.me/923283998968?text=${waText}">&hearts; Order Now</a>
+        <button type="button" class="card-order" onclick="addToCart('${code}')">🤍 Add to Cart</button>
       </div>
     `;
     grid.appendChild(card);
@@ -618,6 +853,110 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
+
+  // ===== CART =====
+  const WHATSAPP_NUMBER = "923283998968";
+  const CART_KEY = "revea_cart_v1";
+  let cart = [];
+  try{
+    cart = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+  }catch(e){ cart = []; }
+
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartCountEl = document.getElementById('cart-count');
+  const cartTotalEl = document.getElementById('cart-total');
+  const cartFab = document.getElementById('cart-fab');
+  const cartDrawer = document.getElementById('cart-drawer');
+  const cartBackdrop = document.getElementById('cart-backdrop');
+
+  function saveCart(){
+    try{ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }catch(e){}
+    renderCart();
+  }
+
+  window.addToCart = function(code){
+    const p = products.find(x => x[0] === code);
+    if(!p) return;
+    const existing = cart.find(c => c.code === code);
+    if(existing){ existing.qty += 1; }
+    else{ cart.push({ code: p[0], name: p[2], price: p[3], qty: 1 }); }
+    saveCart();
+    openCart();
+  };
+
+  window.changeQty = function(code, delta){
+    const item = cart.find(c => c.code === code);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty <= 0){ cart = cart.filter(c => c.code !== code); }
+    saveCart();
+  };
+
+  window.removeFromCart = function(code){
+    cart = cart.filter(c => c.code !== code);
+    saveCart();
+  };
+
+  function renderCart(){
+    const totalCount = cart.reduce((s, c) => s + c.qty, 0);
+    cartCountEl.textContent = totalCount;
+    cartFab.classList.toggle('has-items', totalCount > 0);
+
+    if(cart.length === 0){
+      cartItemsEl.innerHTML = '<p class="cart-empty">Your bag is empty. Add a set to get started.</p>';
+    }else{
+      cartItemsEl.innerHTML = cart.map(c => `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <h4>${c.name}</h4>
+            <span>${fmt(c.price)} &times; ${c.qty}</span>
+          </div>
+          <div class="cart-item-controls">
+            <button type="button" onclick="changeQty('${c.code}', -1)" aria-label="Decrease quantity">&minus;</button>
+            <span>${c.qty}</span>
+            <button type="button" onclick="changeQty('${c.code}', 1)" aria-label="Increase quantity">+</button>
+            <button type="button" class="cart-remove" onclick="removeFromCart('${c.code}')" aria-label="Remove item">&times;</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const subtotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
+    cartTotalEl.textContent = fmt(subtotal);
+  }
+
+  function openCart(){
+    cartDrawer.classList.add('open');
+    cartBackdrop.classList.add('open');
+  }
+  function closeCart(){
+    cartDrawer.classList.remove('open');
+    cartBackdrop.classList.remove('open');
+  }
+
+  document.getElementById('cart-fab').addEventListener('click', openCart);
+  document.getElementById('cart-close-btn').addEventListener('click', closeCart);
+  cartBackdrop.addEventListener('click', closeCart);
+
+  document.getElementById('cart-checkout').addEventListener('click', () => {
+    if(cart.length === 0){
+      alert('Your bag is empty — add a set first.');
+      return;
+    }
+    const lines = cart.map(c => `${c.qty} x ${c.name} (${c.code}) - ${fmt(c.price * c.qty)}`).join('\n');
+    const subtotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
+    const msg =
+`Hi! I'd like to place this order:
+
+${lines}
+
+Total: ${fmt(subtotal)}
+
+I'll send the JazzCash/EasyPaisa payment screenshot here to confirm.`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  renderCart();
 </script>
 
 </body>
