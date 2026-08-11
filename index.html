@@ -524,20 +524,74 @@
     margin-bottom:16px;
     text-align:center;
   }
-  .cart-subtotal{
+  .cart-city{
+    margin-bottom:16px;
+  }
+  .cart-city-label{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.68rem;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .cart-city-options{
+    display:flex;
+    gap:8px;
+  }
+  .city-btn{
+    flex:1;
+    padding:9px 8px;
+    font-family:'Jost', sans-serif;
+    font-size:0.76rem;
+    letter-spacing:0.01em;
+    color:var(--ink-soft);
+    background:var(--ivory);
+    border:1px solid var(--stone-2);
+    border-radius:8px;
+    cursor:pointer;
+    transition:border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+  }
+  .city-btn em{font-style:normal; opacity:0.75;}
+  .city-btn:hover{border-color:var(--pink-dull);}
+  .city-btn.active{
+    background:var(--pink-dull);
+    border-color:var(--pink-dull);
+    color:var(--ivory);
+  }
+  .cart-row{
     display:flex;
     justify-content:space-between;
     align-items:baseline;
-    font-size:0.95rem;
-    margin-bottom:18px;
+    font-size:0.85rem;
+    margin-bottom:8px;
   }
-  .cart-subtotal span:first-child{
+  .cart-row span:first-child{
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.68rem;
+    color:var(--ink-soft);
+  }
+  .cart-row span:last-child{
+    color:var(--ink);
+    font-size:0.85rem;
+  }
+  .cart-total-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding-top:10px;
+    margin-top:2px;
+    margin-bottom:18px;
+    border-top:1px solid var(--stone);
+  }
+  .cart-total-row span:first-child{
     text-transform:uppercase;
     letter-spacing:0.12em;
     font-size:0.72rem;
     color:var(--ink-soft);
   }
-  .cart-subtotal span:last-child{
+  .cart-total-row span:last-child{
     font-family:'Cormorant Garamond', serif;
     font-style:italic;
     font-size:1.4rem;
@@ -765,13 +819,31 @@
   <div id="cart-items" class="cart-items"></div>
   <div class="cart-footer">
     <div class="cart-delivery">🚚 Delivered within 12–14 days, anywhere in Pakistan</div>
-    <div class="cart-subtotal">
+
+    <div class="cart-city">
+      <span class="cart-city-label">Delivering to</span>
+      <div class="cart-city-options">
+        <button type="button" class="city-btn active" id="city-karachi" data-fee="250">Karachi <em>(Rs. 250)</em></button>
+        <button type="button" class="city-btn" id="city-other" data-fee="400">Other city <em>(Rs. 400)</em></button>
+      </div>
+    </div>
+
+    <div class="cart-row">
       <span>Subtotal</span>
+      <span id="cart-subtotal-amt">Rs. 0</span>
+    </div>
+    <div class="cart-row">
+      <span>Delivery</span>
+      <span id="cart-delivery-amt">Rs. 250</span>
+    </div>
+    <div class="cart-total-row">
+      <span>Total</span>
       <span id="cart-total">Rs. 0</span>
     </div>
+
     <div class="cart-payment">
       Pay via JazzCash or EasyPaisa to:
-      <div class="cart-payment-number">[Add your JazzCash / EasyPaisa number here]</div>
+      <div class="cart-payment-number">EasyPaisa: 0328-3998968</div>
       Send the payment, then tap below — we'll confirm your order on WhatsApp and ask for your screenshot and shipping details.
     </div>
     <button id="cart-checkout" class="btn btn-solid cart-checkout-btn" type="button">Confirm Order on WhatsApp</button>
@@ -864,10 +936,40 @@
 
   const cartItemsEl = document.getElementById('cart-items');
   const cartCountEl = document.getElementById('cart-count');
+  const cartSubtotalEl = document.getElementById('cart-subtotal-amt');
+  const cartDeliveryEl = document.getElementById('cart-delivery-amt');
   const cartTotalEl = document.getElementById('cart-total');
   const cartFab = document.getElementById('cart-fab');
   const cartDrawer = document.getElementById('cart-drawer');
   const cartBackdrop = document.getElementById('cart-backdrop');
+  const cityKarachiBtn = document.getElementById('city-karachi');
+  const cityOtherBtn = document.getElementById('city-other');
+
+  const CITY_KEY = "revea_city_v1";
+  let deliveryCity = localStorage.getItem(CITY_KEY) || 'karachi'; // 'karachi' | 'other'
+
+  function deliveryFee(){
+    return deliveryCity === 'karachi' ? 250 : 400;
+  }
+
+  function updateCityButtons(){
+    cityKarachiBtn.classList.toggle('active', deliveryCity === 'karachi');
+    cityOtherBtn.classList.toggle('active', deliveryCity === 'other');
+  }
+
+  cityKarachiBtn.addEventListener('click', () => {
+    deliveryCity = 'karachi';
+    try{ localStorage.setItem(CITY_KEY, deliveryCity); }catch(e){}
+    updateCityButtons();
+    renderCart();
+  });
+  cityOtherBtn.addEventListener('click', () => {
+    deliveryCity = 'other';
+    try{ localStorage.setItem(CITY_KEY, deliveryCity); }catch(e){}
+    updateCityButtons();
+    renderCart();
+  });
+  updateCityButtons();
 
   function saveCart(){
     try{ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }catch(e){}
@@ -922,7 +1024,10 @@
     }
 
     const subtotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
-    cartTotalEl.textContent = fmt(subtotal);
+    const fee = cart.length > 0 ? deliveryFee() : 0;
+    cartSubtotalEl.textContent = fmt(subtotal);
+    cartDeliveryEl.textContent = fmt(fee);
+    cartTotalEl.textContent = fmt(subtotal + fee);
   }
 
   function openCart(){
@@ -945,12 +1050,16 @@
     }
     const lines = cart.map(c => `${c.qty} x ${c.name} (${c.code}) - ${fmt(c.price * c.qty)}`).join('\n');
     const subtotal = cart.reduce((s, c) => s + c.qty * c.price, 0);
+    const fee = deliveryFee();
+    const cityLabel = deliveryCity === 'karachi' ? 'Karachi' : 'another city in Pakistan';
     const msg =
 `Hi! I'd like to place this order:
 
 ${lines}
 
-Total: ${fmt(subtotal)}
+Subtotal: ${fmt(subtotal)}
+Delivery (${cityLabel}): ${fmt(fee)}
+Total: ${fmt(subtotal + fee)}
 
 I'll send the JazzCash/EasyPaisa payment screenshot here to confirm.`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
